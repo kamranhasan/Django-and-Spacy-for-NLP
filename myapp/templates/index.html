@@ -1,0 +1,366 @@
+<html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>NLP Project</title>
+<script src="js/prefixfree.min.js"></script>
+
+</head>
+<style>
+  
+/*
+Inspired by the dribble shot http://dribbble.com/shots/1285240-Freebie-Flat-Pricing-Table?list=tags&tag=pricing_table
+*/
+
+/*--------- Font ------------*/
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans);
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+/* fontawesome */
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+/*------ utiltity classes -----*/
+.fl{ float:left; }
+.fr{ float: right; }
+/*its also known as clearfix*/
+.group:before,
+.group:after {
+    content: "";
+    display: table;
+} 
+.group:after {
+    clear: both;
+}
+.group {
+    zoom: 1;  /*For IE 6/7 (trigger hasLayout) */
+}
+
+body {
+    background: #F2F2F2;
+    font-family: 'Droid Sans', sans-serif;
+    line-height: 1;
+    font-size: 16px;    
+}
+.wrapper {
+    
+}
+.pricing-table {
+    width: 80%;
+    margin: 50px auto;
+    text-align: center;
+    padding: 10px;
+    padding-right: 0;
+}
+.pricing-table .heading{
+    color: #9C9E9F;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    margin-bottom: 4rem;
+}
+.block{
+    width: 80%;    
+    margin: 0 80px;
+    overflow: hidden;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;    
+/*    border: 1px solid red;*/
+}
+/*Shared properties*/
+.title,.pt-footer{
+    color: #FEFEFE;
+    text-transform: capitalize;
+    line-height: 2.5;
+    position: relative;
+}
+.content{
+    position: relative;
+    color: #FEFEFE;
+    padding: 20px 0 10px 0;
+}
+/*arrow creation*/
+.content:after, .content:before,.pt-footer:before,.pt-footer:after {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+.pt-footer:after,.pt-footer:before{
+    top:0;
+}
+.content:after,.pt-footer:after {
+	border-color: rgba(136, 183, 213, 0);	
+	border-width: 5px;
+	margin-left: -5px;
+}
+/*/arrow creation*/
+.price{
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0.625rem;
+}
+.price span{    
+    font-size: 6rem;
+    letter-spacing: 8px;
+    font-weight: bold;        
+}
+.price sup{
+    font-size: 1.5rem;    
+    position: absolute;    
+    top: 12px;
+    left: -12px;
+}
+.hint{
+    font-style: italic;
+    font-size: 0.9rem;
+}
+.features{
+    list-style-type: none;    
+    background: #FFFFFF;
+    text-align: left;
+    color: #9C9C9C;
+    padding:30px 22%;
+    font-size: 0.9rem;
+}
+.features li{
+    padding:15px 0;
+    width: 100%;
+}
+.features li span{
+   padding-right: 0.4rem; 
+}
+.pt-footer{
+    font-size: 0.95rem;
+    text-transform: capitalize;
+}
+/*PERSONAL*/
+.personal .title{        
+    background: #3E3E3E;    
+}
+.personal .content,.personal .pt-footer{
+    background: #8A8A8A;
+}
+.personal .content:after{	
+	border-top-color: #3e3e3e;	
+}
+.personal .pt-footer:after{
+    border-top-color: #FFFFFF;
+}
+/*PROFESSIONAL*/
+.professional .title{
+    background: #3e3e3e;
+}
+.professional .content,.professional .pt-footer{
+    background: #8a8a8a;
+}
+.professional .content:after{	
+	border-top-color: #3e3e3e;	
+}
+.professional .pt-footer:after{
+    border-top-color: #FFFFFF;
+}
+/*BUSINESS*/
+.business .title{
+    background: #E3536C;
+}
+.business .content,.business .pt-footer{
+    background: #EB6379;
+}
+.business .content:after{	
+	border-top-color: #EB6379;	
+}
+.business .pt-footer:after {	
+	border-top-color: #3e3e3e;	
+}
+input#id_sentence {
+    border-radius: 3px;
+    width: 80%;
+    padding: 3px 20px;
+    font-family: ui-sans-serif;
+    margin: 5px 0px 20px;
+}
+div#div_id_document > label {
+    display: none;
+}
+h2.title {
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+button {
+    text-transform: uppercase;
+    border: none !important;
+    border-radius: 5px !important;
+}
+h1.heading {
+    font-size: 32px !important;
+    color: #010101 !important;
+    font-weight: 800;
+    font-family: ui-sans-serif;
+}
+a#contacted {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+}
+div#fade-box > h2 {
+    margin: 15px 0px;
+    font-size: 18px;
+}
+.fontawesome-star:before {
+    content: "\f061" !important;
+}
+</style>
+<body>
+{% block content %}
+  
+<body>
+  <div class="wrapper">
+      <!-- PRICING-TABLE CONTAINER -->
+      <div class="pricing-table group">
+          <h1 class="heading">
+              NL to OCL Conversion using SBVR
+          </h1>
+          <!-- PROFESSIONAL -->
+
+          <div class="block professional fl">
+            {% ifequal flag 'show' %}
+              <h2 class="title">Class Attributes</h2>
+              {% endifequal  %}
+              {% ifequal button 'show' %}
+              <h2 class="title">Input Stage</h2>
+              {% endifequal  %}
+              {% ifequal button "Generate OCL" %}
+              <h2 class="title">SBVR Stage</h2>
+              {% endifequal  %}
+              {% ifequal button "Try A New Sentence?" %}
+      <h2  class='title'> OCL Stage</h2>  
+      {% endifequal %}
+      
+              <!-- CONTENT -->
+              <div class="content">
+                  
+                  <!-- <p class="hint">Suitable for startups</p> -->
+                  <form action="{% url 'submit' %}" method="POST" enctype="multipart/form-data">	
+                    <div id="fade-box">
+                          {% csrf_token %}
+                              {% block form %}
+                              <!-- <input type="file" name="xmlfile"> -->
+                              {% load crispy_forms_tags %}
+                              <span style='font-size: 20px;line-height-step: 5px;margin:0 auto 0 auto;' > {{ form|crispy}}</span>
+                          <br/>
+
+                              {% ifequal button 'show' %}
+                          <button id='contacted' type="submit" style='margin:3px auto 3px auto;border: 2px #5faee3 solid;border-radius:10px;padding:10px;background-color: white;'>Process it</button>
+                           {% endifequal %} 
+                           {% ifequal flag 'show' %}
+                           <br/>
+                           <a href="http://localhost:8000/sbvr?sentence={{ sentence }}&condition={{ condition }}&value={{ value }}&customized_sentence={{ customized_sentence }}&classnames={{ classnames }}" id='contacted'  style='background-color: color;margin:3px auto 3px auto;border: 2px #5faee3 solid;border-radius:10px;padding:10px;background-color: white;size:10'>{{ button }}</a>
+                            {% endifequal %} 
+                            {% ifequal process 'off' %}
+                            <br/><a href="{% url 'index' %}" style='margin:3px auto 3px auto;border: 2px #5faee3 solid;border-radius:10px;padding:10px;background-color: white'>Try Again</a>
+                            <br/>
+                            {% endifequal %}
+                         
+                           {% endblock form %}
+                           {% ifequal sentence_check 'off' %}
+                           <br/>
+                           <h2>The sentence does not include Nouns/Verbs </h2>
+                           {% endifequal %}
+                                          
+                        </div>
+                      </form>           
+              </div>
+              <!-- /CONTENT -->
+              <!-- FEATURES -->
+              <ul class="features">
+                {% ifequal process 'off' %}
+
+                <li><span class="fontawesome-cog"></span>Error: The Sentence Does Not Match With The UML Diagram Context</li>
+                           <p>{{ notmatch }} does not exist in the Sentence</p>
+                           {% endifequal %}  
+                           {% ifequal button "Generate OCL" %}
+                           <li  style='font-size: 18px;color:black;text-transform: uppercase;'><span class="fontawesome-star"></span>Original Sentence</li>
+                            <li style='font-size: 14px !important;color:black;margin-left: 50px !important;'>{{ sentence }}</li>
+                     <br/>
+                     <li  style='font-size: 18px;color:black;text-transform: uppercase;'><span class="fontawesome-star"></span>SBVR Converted Sentence</li>
+                           <li style='font-size: 14px !important;color:black;margin-left: 50px !important;'>It is necessary that {{ customized_sentence }}</li>
+                           <br/>
+                           <a class='title' href="http://localhost:8000/ocl?sentence={{ customized_sentence }}&condition={{ condition }}&value={{ value }}&classnames={{ classnames }}" id='contacted'  style='background-color: rgb(6, 197, 211);margin:3px auto 3px auto;border: 2px #5faee3 solid;border-radius:10px;padding:10px;color: white;'>{{ button }}</a>
+                               
+                           {% endifequal %}
+
+                           {% ifequal flag 'show' %}
+                           <li  style='font-size: 18px;color:black;text-transform: uppercase;padding: 0px !important;'><span class="fontawesome-star"></span>Original Sentence</li>
+                           <li style='font-size: 14px !important;color:black;margin-left: 50px !important;'>{{ sentence }}</li>
+
+                           <li  style='font-size: 18px;color:black;text-transform: uppercase;padding: 15px 0px 0px 0px !important;'><span class="fontawesome-star"></span>Class Names</li>
+                           <li style='font-size: 14px !important;color:black;margin-left: 50px !important;'>{{ classnames }}</li>
+                           <li  style='font-size: 18px;color:black;text-transform: uppercase;padding: 15px 0px 0px 0px !important;'><span class="fontawesome-star"></span>Attributes</li>
+                           <li style='font-size: 14px !important;color:black;margin-left: 50px !important;'> {{ attributes }}</li>
+                           <li style='font-size: 14px !important;color:black;margin-left: 50px !important;'>The Nouns are: {{ nouns }}</li>
+                           <li style='font-size: 14px !important;color:black;margin-left: 50px !important;'>The Verbs are: {{ verbs }}</li>
+
+                           <li  style='font-size: 18px;color:black;text-transform: uppercase;padding: 15px 0px 0px 0px !important;'><span class="fontawesome-star"></span>Associations</li>
+                            <li style='font-size: 14px !important;color:black;margin-left: 50px !important;'>{{ associations }}</li>
+          {% endifequal %}
+          {% ifequal button "Try A New Sentence?" %}
+          <li  style='font-size: 15px;color:black'><span class="fontawesome-star"></span>SBVR Converted Sentence</li>
+          <li style='font-size: 14px !important;color:black;margin-left: 50px !important;'>It is necessary that {{ sentence }}</li>
+<br/>
+<li  style='font-size: 15px;color:black'><span class="fontawesome-star"></span>OCL Constraints</li> 
+      <li style='font-size: 14px !important;color:black;margin-left: 50px !important;'>Context: {{ classnames.0 }}</li>
+      {% for item in ranger %}
+      {% for a, b, c, d in jigsaw %}
+      {% if gauge is 1 %}
+          <li style='font-size: 14px !important;color:black;margin-left: 50px !important;'>Invariant: {{ d }}.{{ a }} {{ b }} {{ c }}</li>
+      {% else %}
+          <li style='font-size: 14px !important;color:black;margin-left: 50px !important;'>Invariant: {{ a }}.{{ d }} {{ b }} {{ c }}</li>
+      {% endif %}
+    <!-- {{item}} {# or do anything 100 times #} -->
+      {% endfor %}
+      {% endfor %}
+      <br/>
+      <a href="http://localhost:8000/" id='contacted'  style='background-color: color;margin:3px auto 3px auto;border: 2px #3e3e3e solid;border-radius:5px;padding:10px;background-color: white;float: right;margin: -15px;'>{{ button }}</a>
+          
+      {% endifequal %}
+      
+                  <!-- <li><span class="fontawesome-cog"></span>FYP PROJECT</li> -->
+                  <!-- <li><span class="fontawesome-star"></span>100,000 visits/mo.</li>
+                  <li><span class="fontawesome-dashboard"></span>Unlimited Data Transfer</li>
+                  <li><span class="fontawesome-cloud"></span>20GB Local Storage</li> -->
+              </ul>
+              <!-- /FEATURES -->
+              <!-- PT-FOOTER -->
+              <div class="pt-footer">
+                  <p>NL TO OCL COnversion Using SBVR</p>
+              </div>
+              <!-- /PT-FOOTER -->
+          </div>
+          <!-- /PROFESSIONAL -->
+               </div>
+      <!-- /PRICING-TABLE -->
+  </div>
+</body>
+{% endblock %}
+</body>
+
+</html>
