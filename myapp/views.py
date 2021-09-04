@@ -26,13 +26,13 @@ from bs4 import BeautifulSoup
 from xml.dom import minidom
 
 
-
 def submit(request):
     import json
     # check if the request is POST means it is from the input form
     if request.method=="POST":
         data=Messages(request.POST)
-        time.sleep(2)
+        # time.sleep(2)
+        #checking for a web driver
         if 1:
             options = webdriver.FirefoxOptions()
             options.headless = True
@@ -45,6 +45,7 @@ def submit(request):
             gz_data = gz_data.toprettyxml()
             driver = webdriver.Firefox(executable_path=r'/home/abdul/Documents/Django-and-Spacy-for-NLP-master-main/geckodriver', options=options)
             #driver = webdriver.Firefox(executable_path=r'/home/abdul/Documents/Django-and-Spacy-for-NLP-master-main/geckodriver')
+           
             url = 'https://jgraph.github.io/drawio-tools/tools/convert.html'
             driver.get(url)
             inputElement = driver.find_element_by_id('textarea')
