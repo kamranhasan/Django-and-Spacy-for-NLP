@@ -279,7 +279,10 @@ div#fade-box > h2 {
                             <br/><a href="{% url 'index' %}" style='margin:3px auto 3px auto;border: 2px #5faee3 solid;border-radius:10px;padding:10px;background-color: white'>Try Again</a>
                             <br/>
                             {% endifequal %}
-                         
+                            {% ifequal process2 'off' %}
+                            <br/><a href="{% url 'index' %}" style='margin:3px auto 3px auto;border: 2px #5faee3 solid;border-radius:10px;padding:10px;background-color: white'>{{ response }}</a>
+                            <br/>
+                            {% endifequal %}
                            {% endblock form %}
                            {% ifequal sentence_check 'off' %}
                            <br/>

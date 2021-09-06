@@ -40,10 +40,19 @@ def submit(request):
             # gz_data = gz_data.toprettyxml()
             # gz_data = '<mxfile host="app.diagrams.net" modified="2021-03-30T18:07:44.134Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36" etag="656GnPVzddndN2rW8mCB" version="14.5.1" type="device"><diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">7VhtU+IwEP41fOSGtqD40YJ6L56jp6f3NbShzZlme2kQ8dffpk1oSxWK6DneOMMwzZPNJtnn2WQnHW+U3J9IksbfIaS84/bC+4437rju0O3jvwYWBdD3vAKIJAsLyCmBS/ZADdgz6IyFNKsZKgCuWFoHAxCCBqqGESlhXjebAq/PmpKINoDLgPAmesNCFdtt7Zf4Z8qi2M7s7B0UPQmxxmYnWUxCmFcg76jjjSSAKr6S+xHlOnY2LjdfFjf89Hbv5OtF9of89L9dnV13C2fH2wxZbkFSoZ7t+uF2evz5uv/7V3p+fDHvnRxOvnbNkN4d4TMTr5TKDITZsVrYMGZzlnAisOVPQahL04NB8AlnkcDvAFdHJQJ3VCqGDByaDgUpokHMeHhKFjDTe8gUCW5ty49Bsgd0Szh2OQhgt1RGTO5ezeJSj0S4h6ikGdqc28A4S+iUZMrYBMA5STM2yResTRIiIyZ8UAoS6whmIqShaS2ZzhtKwu1SO3p8SzoMbToa9L4iRkPPCYWEKrlAE9O7VJpJNce256VwnT2DxVXRekOTMCZZoqXv5XQ/MLmIiDAI5Xzeynz9lvMhI7XpCEfiBVHU12HMqjLEj8pWSygX5xZCdRpCPSMJbcgUI60qkuR0qp4UZJaSgInoNLcZ90vkh9mphgDHTnkuhpiFIRW5WBRRpNCTVkgKTKg8FAMffxiwUe/ToDPABY2w7ZRt/GlzqUYgUFeE5QKiKNY51YJ9RFpr03aztBZ1xrZltiqkGqXb8uc1+DuM/j/61hwjsUq4+XwtkgfuG5Pcb5DcYJiz/A4x0XAePV830J8gkdqd5ftKy2HcdRqa8Jqa8B7hn5MJ5eeQMcVA+5eF7You3ipz94ftSF1zA+zEqbPfIJU8krlP1Ae9j/rg5eqDQW/4vPoA0efUB4PBO6oPDhoyHeOEiMAU/3wmccUf102bRH8/RYXbrCo+LpydaW1bRrzWjWPlso5VKsJD/TiALUjzNNtwJtdTBYcfM24FQcOI2guL8gnMj0rAzwHssKLY+nzPYCYDurkkwBstom2Y1Mttc13oU6R6fPfNgiTlRLG7+vvImpvhXMuydOsNV26FA7fuotiwGVV9kFhxNOhvcFREZLOj7oojb8UPTKcZrbl4qVvHbRZHlvVSq3nFUUn/DafNxNQdxTHhYzET5eIdAQesnsYCyiqrKIAct/1xYJPLPLeZZXWWTw/tq5HujnKyqvxnXA134Moe0e+VrJdJ/e5+/UDZnTpslg+ohXn5Cu0d/QU=</diagram></mxfile>'
             strr = ""
-            gz_data = minidom.parse(request.FILES['document'])
+            try:
+                gz_data = minidom.parse(request.FILES['document'])
+            except:
+                print('here')
+                data=Messages()
+                respond='Error! (No File Uploaded)'
+                process2 = 'off'
+                return render(request,'index.html',{'response':respond, 'process2': process2})
+               
             xz_data = gz_data
             gz_data = gz_data.toprettyxml()
-            driver = webdriver.Firefox(executable_path=r'/home/abdul/Documents/Django-and-Spacy-for-NLP-master-main/geckodriver', options=options)
+            # print(gz_data)
+            driver = webdriver.Firefox(executable_path=r'/home/hp/Desktop/FYP/geckodriver', options=options)
             #driver = webdriver.Firefox(executable_path=r'/home/abdul/Documents/Django-and-Spacy-for-NLP-master-main/geckodriver')
            
             url = 'https://jgraph.github.io/drawio-tools/tools/convert.html'
@@ -339,8 +348,9 @@ def submit(request):
             respond='Your Message has been sent successfully!'
             return render(request,'index.html',{'response':response})
     respond='Send Message'
+    
     context = {
-        'response' : response
+        'response' : respond
         }
     return render(request, 'index.html', context)
 
